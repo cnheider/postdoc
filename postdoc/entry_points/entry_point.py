@@ -6,8 +6,8 @@ __all__ = ['main']
 import subprocess
 
 from pathlib import Path
-from . import PROJECT_NAME
-from .building import build_documentation
+from postdoc import PROJECT_NAME
+from postdoc.building import build_documentation
 
 
 def main():
@@ -25,22 +25,17 @@ def main():
   if docs_requirements.exists():
     subprocess.check_call(["pip", "install", "-r", docs_requirements])
 
-  return_code, annotations = build_documentation(os.environ.get("INPUT_OUTPUT_TYPE"),
-                                                 os.environ.get("INPUT_DOCUMENTATION_PATH"))
+  return_code, annotations = build_documentation(os.environ.get("INPUT_OUTPUT_TYPE",'html'),
+                                                 os.environ.get("INPUT_DOCUMENTATION_PATH",''))
+
   if return_code != 0:
-    build_success = False
-  else:
-    build_success = True
-
-  for annotation in annotations:
-    print(annotation)
-
-  status_message = (f"[{PROJECT_NAME}] Build {'succeeded' if build_success else 'failed'} with "
-                   f"{len(annotations)} warnings")
-  print(status_message)
-
-  if not build_success:
     raise RuntimeError("Build failed")
+  else:
+    for annotation in annotations:
+      print(annotation)
+
+    print((f"[{PROJECT_NAME}] Build succeeded with {len(annotations)} warnings"))
+
 
 
 if __name__ == "__main__":
