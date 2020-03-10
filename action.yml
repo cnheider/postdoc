@@ -1,4 +1,4 @@
-name:        'Postdoc'
+name:        'gh-action-postdoc'
 description: 'Documentation generator'
 author:      'cnheider'
 
