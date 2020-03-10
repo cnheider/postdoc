@@ -1,1 +1,3 @@
 black
+sphinx
+apppath

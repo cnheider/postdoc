@@ -1,31 +1,27 @@
-name: 'Doctor'
+name:        'Postdoc'
 description: 'Documentation generator'
-author: 'cnheider'
+author:      'cnheider'
+
 branding:
-  icon: upload-cloud
-  color: green
+  icon:  'book'
+  color: 'red'
+
 inputs:
-  github_token:
-    description: 'Token for the repo. Can be passed in using $\{{ secrets.GITHUB_TOKEN }}'
-    required: true
-  repository:
-    description: 'Repository name to push. Default or empty value represents current github repository (${GITHUB_REPOSITORY})'
-    default: ''
-    required: false
+  documentation_path:
+    description: 'path to the sphinx documentation source root.'
+    required:    false
+    default:     "docs/"
+
+  output_type:
+    description: 'The output type of the sphinx documentation'
+    required:    false
+    default:     html
+
   branch:
     description: 'Destination branch to push changes'
-    required: false
-    default: 'master'
-  force:
-    description: 'Determines if force push is used'
-    required: false
-  tags:
-    description: 'Determines if --tags is used'
-    required: false
-  directory:
-    description: 'Directory to change to before pushing.'
-    required: false
-    default: '.'
+    required:    false
+    default:     'master'
+
 runs:
-  using: 'node12'
-  main: 'script.js'
+  using: 'docker'
+  image: 'Dockerfile'
