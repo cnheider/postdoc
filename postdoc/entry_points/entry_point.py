@@ -25,8 +25,8 @@ def main():
   if docs_requirements.exists():
     subprocess.check_call(["pip", "install", "-r", docs_requirements])
 
-  return_code, annotations = build_documentation(os.environ.get("INPUT_OUTPUT_TYPE",'html'),
-                                                 os.environ.get("INPUT_DOCUMENTATION_PATH",''))
+  return_code, annotations = build_documentation(os.environ.get("INPUT_OUTPUT_TYPE", 'html'),
+                                                 os.environ.get("INPUT_DOCUMENTATION_PATH", ''))
 
   if return_code != 0:
     raise RuntimeError("Build failed")
@@ -34,8 +34,7 @@ def main():
     for annotation in annotations:
       print(annotation)
 
-    print((f"[{PROJECT_NAME}] Build succeeded with {len(annotations)} warnings"))
-
+    print(f"[{PROJECT_NAME}] Build succeeded with {len(annotations)} warnings")
 
 
 if __name__ == "__main__":
