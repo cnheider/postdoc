@@ -1,6 +1,3 @@
-[submodule "samples/gh-action-post-test"]
-	path = samples/gh-action-post-test
-	url = git@github.com:cnheider/gh-action-postdoc-test.git
 [submodule "samples/gh-action-postdoc-test"]
 	path = samples/gh-action-postdoc-test
 	url = git@github.com:cnheider/gh-action-postdoc-test.git
