@@ -21,7 +21,10 @@ def main():
   print(f"[{PROJECT_NAME}] Starting build")
 
   docs_requirements = Path.cwd() / 'requirements' / "requirements_docs.txt"
+  if docs_requirements.exists():
+    subprocess.check_call(["pip", "install", "-r", docs_requirements])
 
+  docs_requirements = Path.cwd() / "requirements_docs.txt"
   if docs_requirements.exists():
     subprocess.check_call(["pip", "install", "-r", docs_requirements])
 
