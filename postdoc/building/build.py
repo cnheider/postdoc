@@ -8,7 +8,7 @@ __all__ = ["build_documentation"]
 from pathlib import Path
 
 from .parse import parse_sphinx_warnings_log
-from postdoc import PROJECT_NAME
+from .. import PROJECT_NAME
 
 
 class OutputType(Enum):
@@ -35,8 +35,11 @@ class OutputType(Enum):
 def build_documentation(
     output_type: OutputType = OutputType.html, doc_path: Path = Path("docs")
 ) -> tuple:
+    """
+    """
     if not isinstance(output_type, OutputType):
         output_type = OutputType(output_type)
+
     if doc_path is None or doc_path == "":
         doc_path = Path.cwd() / "docs"
     if not isinstance(doc_path, Path):
