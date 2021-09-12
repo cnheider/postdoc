@@ -13,7 +13,7 @@
 
 Github Action documentation generator
 
-| ![Postdoc](https://github.com/cnheider/postdoc/workflows/Postdoc/badge.svg) |
+| ![Postdoc](https://github.com/pything/postdoc/workflows/Postdoc/badge.svg) |
 |---|
 
 ![python](.github/images/python.svg)
