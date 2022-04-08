@@ -3,4 +3,5 @@ sphinx
 m2r2
 apppath
 sorcery
+sphinxcontrib-programoutput
 mistune>=2.0.1 # not directly required, pinned by Snyk to avoid a vulnerability
