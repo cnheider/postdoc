@@ -16,8 +16,10 @@ from typing import List, Tuple
 
 
 class AnnotationLevel(Enum):
-    WARNING = "warning"
-    FAILURE = "error"
+    """ """
+
+    warning = "warning"
+    failure = "error"
 
 
 @dataclass
@@ -74,10 +76,10 @@ def parse_sphinx_warnings_log(logs: List) -> List[Annotation]:
     annotations = []
 
     for i, line in enumerate(logs):
-        if "WARNING" not in line:
+        if "warning" not in line:
             continue
 
-        warning_tokens = line.split("WARNING:")
+        warning_tokens = line.split("warning:")
         if len(warning_tokens) != 2:
             continue
         file_and_line, message = warning_tokens
@@ -91,7 +93,7 @@ def parse_sphinx_warnings_log(logs: List) -> List[Annotation]:
         warning_message = message
         # If this isn't the last line and the next line isn't a warning,
         # treat it as part of this warning message.
-        if (i != len(logs) - 1) and "WARNING" not in logs[i + 1]:
+        if (i != len(logs) - 1) and "warning" not in logs[i + 1]:
             warning_message += logs[i + 1]
         warning_message = warning_message.strip()
 
@@ -101,7 +103,7 @@ def parse_sphinx_warnings_log(logs: List) -> List[Annotation]:
                 message=warning_message,
                 start_line=line_number,
                 end_line=line_number,
-                annotation_level=AnnotationLevel.WARNING,
+                annotation_level=AnnotationLevel.warning,
             )
         )
 

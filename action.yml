@@ -1,26 +1,26 @@
-name:        'gh-action-postdoc'
+name: 'gh-action-postdoc'
 description: 'Documentation generator'
-author:      'cnheider'
+author: 'cnheider'
 
 branding:
-  icon:  'book'
+  icon: 'book'
   color: 'red'
 
 inputs:
   documentation_path:
     description: 'path to the sphinx documentation source root.'
-    required:    false
-    default:     "docs/"
+    required: false
+    default: "docs/"
 
   output_type:
     description: 'The output type of the sphinx documentation'
-    required:    false
-    default:     html
+    required: false
+    default: html
 
   branch:
     description: 'Destination branch to push changes'
-    required:    false
-    default:     'master'
+    required: false
+    default: 'master'
 
 runs:
   using: 'docker'

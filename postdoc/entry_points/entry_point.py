@@ -11,36 +11,36 @@ from postdoc.building import build_documentation
 
 
 def main():
-  """
+    """
      This is the entrypoint called by Github when our action is run. All the Github specific setup is done
      here to make it easy to test the action code in isolation.
 
     :return:
     :rtype:
     """
-  print(f"[{PROJECT_NAME}] Starting build")
+    print(f"[{PROJECT_NAME}] Starting build")
 
-  docs_requirements = Path.cwd() / 'requirements' / "requirements_docs.txt"
-  if docs_requirements.exists():
-    subprocess.check_call(["pip", "install", "-r", docs_requirements])
+    docs_requirements = Path.cwd() / "requirements" / "requirements_docs.txt"
+    if docs_requirements.exists():
+        subprocess.check_call(["pip", "install", "-r", str(docs_requirements)])
 
-  docs_requirements = Path.cwd() / "requirements_docs.txt"
-  if docs_requirements.exists():
-    subprocess.check_call(["pip", "install", "-r", docs_requirements])
+    docs_requirements = Path.cwd() / "requirements_docs.txt"
+    if docs_requirements.exists():
+        subprocess.check_call(["pip", "install", "-r", str(docs_requirements)])
 
-  return_code, annotations = build_documentation(
-      os.environ.get("INPUT_OUTPUT_TYPE", "html"),
-      os.environ.get("INPUT_DOCUMENTATION_PATH", ""),
-      )
+    return_code, annotations = build_documentation(
+        os.environ.get("INPUT_OUTPUT_TYPE", "html"),
+        os.environ.get("INPUT_DOCUMENTATION_PATH", ""),
+    )
 
-  if return_code != 0:
-    raise RuntimeError("Build failed")
-  else:
-    for annotation in annotations:
-      print(annotation)
+    if return_code != 0:
+        raise RuntimeError("Build failed")
+    else:
+        for annotation in annotations:
+            print(annotation)
 
-    print(f"[{PROJECT_NAME}] Build succeeded with {len(annotations)} warnings")
+        print(f"[{PROJECT_NAME}] Build succeeded with {len(annotations)} warnings")
 
 
 if __name__ == "__main__":
-  main()
+    main()
