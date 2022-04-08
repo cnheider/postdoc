@@ -7,5 +7,5 @@ __doc__ = r"""
            Created on 10/03/2020
            """
 
-from .parse import *
 from .build import *
+from .parse import *

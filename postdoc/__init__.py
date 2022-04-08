@@ -7,7 +7,7 @@ __doc__ = r"""
 
            Created on 09/03/2020
            """
-__version__ = "0.0.2"
+__version__ = "0.0.3"
 
 import os
 from datetime import datetime
@@ -17,7 +17,8 @@ import pkg_resources
 
 from apppath import AppPath
 
-__all__ = ["PROJECT_APP_PATH", "PROJECT_NAME", "PROJECT_VERSION", "get_version"]
+
+# __all__ = ["PROJECT_APP_PATH", "PROJECT_NAME", "PROJECT_VERSION", "get_version"]
 
 
 def dist_is_editable(dist):
@@ -34,6 +35,7 @@ def dist_is_editable(dist):
 
 
 PROJECT_NAME = __project__.lower().strip().replace(" ", "_")
+PROJECT_YEAR = 2020
 PROJECT_VERSION = __version__
 PROJECT_AUTHOR = __author__.lower().strip().replace(" ", "_")
 PROJECT_APP_PATH = AppPath(app_name=PROJECT_NAME, app_author=PROJECT_AUTHOR)
@@ -47,6 +49,7 @@ else:
 
 
 def get_version(append_time=DEVELOP):
+    """ """
     version = __version__
     if not version:
         version = os.getenv("VERSION", "0.0.0")
@@ -60,11 +63,7 @@ def get_version(append_time=DEVELOP):
             # Most git tags are prefixed with 'v' (example: v1.2.3) this is
             # never desirable for artifact repositories, so we strip the
             # leading 'v' if it's present.
-            version = (
-                version[1:]
-                if isinstance(version, str) and version.startswith("v")
-                else version
-            )
+            version = version[1:] if isinstance(version, str) and version.startswith("v") else version
         else:
             # Default version is an ISO8601 compliant datetime. PyPI doesn't allow
             # the colon ':' character in its versions, and time is required to allow
@@ -76,9 +75,7 @@ def get_version(append_time=DEVELOP):
             #
             # Publications using datetime versions should only be made from master
             # to represent the HEAD moving forward.
-            warning(
-                f"Environment variable VERSION is not set, only using datetime: {date_version}"
-            )
+            warning(f"Environment variable VERSION is not set, only using datetime: {date_version}")
 
             # warn(f'Environment variable VERSION is not set, only using timestamp: {version}')
 
