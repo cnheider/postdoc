@@ -48,7 +48,7 @@ def build_documentation(output_type: OutputType = OutputType.html, doc_path: Pat
 
     assert doc_path.exists(), f"{doc_path} does not exist in working directory {os.listdir(str(Path.cwd()))}"
 
-    print(f"[{PROJECT_NAME}] Making {output_type.value} documentation")
+    print(f"[{PROJECT_NAME}] Making {output_type} documentation")
 
     log_file = Path(tempfile.gettempdir()) / "sphinx-log"
 
