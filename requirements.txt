@@ -1,4 +1,5 @@
 black
 sphinx
+m2r2
 apppath
 sorcery
