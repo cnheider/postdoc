@@ -36,7 +36,9 @@ class OutputType(Enum):
     pdf = "latex"
 
 
-def build_documentation(output_type: OutputType = OutputType.html, doc_path: Path = Path("docs")) -> tuple:
+def build_documentation(
+    output_type: OutputType = OutputType.html, doc_path: Path = Path("docs")
+) -> tuple:
     """ """
     if not isinstance(output_type, OutputType):
         output_type = OutputType(output_type)
@@ -46,7 +48,9 @@ def build_documentation(output_type: OutputType = OutputType.html, doc_path: Pat
     if not isinstance(doc_path, Path):
         doc_path = Path(doc_path)
 
-    assert doc_path.exists(), f"{doc_path} does not exist in working directory {os.listdir(str(Path.cwd()))}"
+    assert (
+        doc_path.exists()
+    ), f"{doc_path} does not exist in working directory {os.listdir(str(Path.cwd()))}"
 
     print(f"[{PROJECT_NAME}] Making {output_type} documentation")
 
@@ -57,7 +61,9 @@ def build_documentation(output_type: OutputType = OutputType.html, doc_path: Pat
 
     return_code = subprocess.call(
         ["make", f"{output_type.value}", "-e"],
-        env=dict(os.environ, SPHINXOPTS=f'--keep-going --no-color -w "{str(log_file)}"'),
+        env=dict(
+            os.environ, SPHINXOPTS=f'--keep-going --no-color -w "{str(log_file)}"'
+        ),
         cwd=str(doc_path),
     )
 

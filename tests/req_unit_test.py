@@ -21,13 +21,17 @@ class TestRequirements(unittest.TestCase):
             with self.subTest(requirement=requirement):
                 pkg_resources.require(requirement)
 
-    @pytest.mark.xfail(strict=False)  # DO not successfully parse recursing of reqs using -r
+    @pytest.mark.xfail(
+        strict=False
+    )  # DO not successfully parse recursing of reqs using -r
     def test_extra_requirements(self):
         """Test that each required package is available."""
         if _EXTRA_REQUIREMENTS_PATH.exists():
             for extra_req_file in _EXTRA_REQUIREMENTS_PATH.iterdir():
                 if extra_req_file.is_file() and extra_req_file.suffix == ".txt":
-                    requirements = pkg_resources.parse_requirements(extra_req_file.open())
+                    requirements = pkg_resources.parse_requirements(
+                        extra_req_file.open()
+                    )
                     for requirement in requirements:
                         requirement = str(requirement)
                         with self.subTest(requirement=requirement):
